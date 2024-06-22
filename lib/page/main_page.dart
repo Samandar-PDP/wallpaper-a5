@@ -27,13 +27,17 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(_titles[_currentIndex]),),
+      appBar: AppBar(title: Text(_titles[_currentIndex]),surfaceTintColor: Colors.transparent,),
       drawer: _drawer(),
-      body: _pages[_currentIndex],
-      bottomNavigationBar: MyBottomNav(
-        onClick: (v) => setState(() { _currentIndex = v; }),
-        index: _currentIndex,
-      ),
+      body: Stack(
+        children: [
+          Expanded(child: _pages[_currentIndex]),
+          Positioned(bottom: 0,right: 0,left: 0,child: MyBottomNav(
+            onClick: (v) => setState(() { _currentIndex = v; }),
+            index: _currentIndex,
+          ))
+        ],
+      )
     );
   }
   _drawer() {
@@ -41,7 +45,7 @@ class _MainPageState extends State<MainPage> {
       backgroundColor: const Color(0xFF152C3F),
       child: Column(
         children: [
-          const SizedBox(height: 20,),
+          const SizedBox(height: 60,),
           ListTile(
             leading: Image.asset('assets/img/group.png'),
             title: const Text("4K",style: TextStyle(fontSize: 20),),

@@ -15,11 +15,9 @@ class _MyBottomNavState extends State<MyBottomNav> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // umumiy radious berib o'redi
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(100), color: Colors.white12),
-      //padding: const EdgeInsets.all(16),
-      margin: const EdgeInsets.all(16),
+      margin: const EdgeInsets.symmetric(horizontal: 22,vertical: 30),
       width: MediaQuery.of(context).size.width,
       height: 70,
       child: ClipRRect(
@@ -52,7 +50,7 @@ class _MyBottomNavState extends State<MyBottomNav> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           IconButton(
-              onPressed: onClick, icon: Image.asset('assets/img/$icon.png',width: 24,height: 24,),),
+              onPressed: onClick, icon: Image.asset('assets/img/$icon.png',width: 22, height: 22)),
           AnimatedContainer(
               height: 6,
               width: 6,
