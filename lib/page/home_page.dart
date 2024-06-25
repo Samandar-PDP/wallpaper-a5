@@ -93,6 +93,7 @@ class _HomePageState extends State<HomePage> {
               ImageItem(photo: imageList[index], onClick: () {}),
         ),
         Positioned(
+
             top: 12,
             left: 12,
             right: 12,
