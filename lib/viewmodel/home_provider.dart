@@ -7,9 +7,10 @@ class HomeProvider with ChangeNotifier {
   final _repo = AppRepository();
 
   void fetchImages(String query) async {
-    await Future.delayed(const Duration(seconds: 1));
-    final list = await _repo.getImages(query);
     imageList.clear();
+    notifyListeners();
+    await Future.delayed(const Duration(milliseconds: 500));
+    final list = await _repo.getImages(query);
     imageList.addAll(list);
     notifyListeners(); // setState
   }

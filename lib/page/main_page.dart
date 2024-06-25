@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:wallpaper_app/page/home_page.dart';
 import 'package:wallpaper_app/page/liked_page.dart';
@@ -27,11 +28,13 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(_titles[_currentIndex]),surfaceTintColor: Colors.transparent,),
+      appBar: AppBar(title: Text(_titles[_currentIndex]),surfaceTintColor: Colors.transparent,actions: [
+        AnimatedOpacity(opacity: _currentIndex == 0 ? 1 : 0, duration: const Duration(milliseconds: 500),child: IconButton(onPressed: _currentIndex == 0 ? _onSearch : null, icon: const Icon(CupertinoIcons.search)))
+      ]),
       drawer: _drawer(),
       body: Stack(
         children: [
-          Expanded(child: _pages[_currentIndex]),
+          _pages[_currentIndex],
           Positioned(bottom: 0,right: 0,left: 0,child: MyBottomNav(
             onClick: (v) => setState(() { _currentIndex = v; }),
             index: _currentIndex,
@@ -45,7 +48,7 @@ class _MainPageState extends State<MainPage> {
       backgroundColor: const Color(0xFF152C3F),
       child: Column(
         children: [
-          const SizedBox(height: 60,),
+          const SizedBox(height: 60),
           ListTile(
             leading: Image.asset('assets/img/group.png'),
             title: const Text("4K",style: TextStyle(fontSize: 20),),
@@ -63,5 +66,8 @@ class _MainPageState extends State<MainPage> {
         ],
       ),
     );
+  }
+  _onSearch() {
+    print('fdskfjsd');
   }
 }
