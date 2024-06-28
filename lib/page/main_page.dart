@@ -28,9 +28,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(_titles[_currentIndex]),surfaceTintColor: Colors.transparent,actions: [
-        AnimatedOpacity(opacity: _currentIndex == 0 ? 1 : 0, duration: const Duration(milliseconds: 500),child: IconButton(onPressed: _currentIndex == 0 ? _onSearch : null, icon: const Icon(CupertinoIcons.search)))
-      ]),
+      appBar: AppBar(title: Text(_titles[_currentIndex]),surfaceTintColor: Colors.transparent),
       drawer: _drawer(),
       body: Stack(
         children: [
@@ -66,8 +64,5 @@ class _MainPageState extends State<MainPage> {
         ],
       ),
     );
-  }
-  _onSearch() {
-    print('fdskfjsd');
   }
 }

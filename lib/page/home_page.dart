@@ -6,6 +6,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:wallpaper_app/viewmodel/home_provider.dart';
 import 'package:wallpaper_app/widget/image_item.dart';
+import 'package:wallpaper_app/widget/my_search_bar.dart';
 
 import '../model/image_response.dart';
 
@@ -93,13 +94,14 @@ class _HomePageState extends State<HomePage> {
               ImageItem(photo: imageList[index], onClick: () {}),
         ),
         Positioned(
-
             top: 12,
             left: 12,
             right: 12,
-            child: _isSearchVisible ? SearchBar(
-              elevation: MaterialStateProperty.all(0),
-            ).animate().fade().slideY().scaleX() : Container()
+            child: _isSearchVisible ? MySearchBar(
+              onSearch: (query) {
+                print(query);
+              },
+            ) : Container()
         )
       ],
     );
