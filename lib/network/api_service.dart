@@ -17,6 +17,7 @@ abstract class ApiService {
   Future<ImageResponse> getImages(@Query('query') String query,
       {@Query('per_page') int perPage = 80});
 }
+
 Dio buildDioClient(String base) {
   final dio = Dio()..options = BaseOptions(baseUrl: base);
   dio.interceptors.add(PrettyDioLogger(

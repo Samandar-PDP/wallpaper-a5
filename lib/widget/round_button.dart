@@ -7,6 +7,7 @@ class RoundButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
+      heroTag: icon.hashCode.toString(),
       onPressed: onClick,
       elevation: 0,
       backgroundColor: Colors.blueGrey,

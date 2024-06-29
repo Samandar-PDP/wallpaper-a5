@@ -1,7 +1,6 @@
 import 'package:async_wallpaper/async_wallpaper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_wallpaper_manager/flutter_wallpaper_manager.dart';
 import 'package:wallpaper_app/model/image_response.dart';
 import 'package:wallpaper_app/widget/round_button.dart';
 
@@ -19,10 +18,12 @@ class _DetailPageState extends State<DetailPage> {
     return Scaffold(
       body: Stack(
         children: [
-          Image.network(widget.photo.src?.portrait ?? "",fit: BoxFit.fill,width: double.infinity,height: double.infinity),
+          FadeInImage(placeholder: const AssetImage("assets/img/img.png"), fit: BoxFit.fill,width: double.infinity,height: double.infinity,image: NetworkImage(
+              widget.photo.src?.portrait ?? "",
+          )),
           Positioned(
             left: 17,
-            top: 17,
+            top: 40,
             child: RoundButton(
               icon: CupertinoIcons.back,
               onClick: () => Navigator.of(context).pop(),
@@ -59,8 +60,10 @@ class _DetailPageState extends State<DetailPage> {
       ),
     );
   }
-  void _onSetWallpaper() async {
-    final result = await AsyncWallpaper.setWallpaper(url: widget.photo.src?.portrait ?? "");
-    print(result);
+  void _onSetWallpaper() {
+    AsyncWallpaper.setWallpaper(url: widget.photo.src?.portrait ?? "").then((value) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Wallpaper Set")));
+    });
+
   }
 }

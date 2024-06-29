@@ -28,6 +28,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(title: Text(_titles[_currentIndex]),surfaceTintColor: Colors.transparent),
       drawer: _drawer(),
       body: Stack(
