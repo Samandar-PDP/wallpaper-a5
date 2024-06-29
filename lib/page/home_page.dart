@@ -4,6 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:provider/provider.dart';
+import 'package:wallpaper_app/page/detail_page.dart';
 import 'package:wallpaper_app/viewmodel/home_provider.dart';
 import 'package:wallpaper_app/widget/image_item.dart';
 import 'package:wallpaper_app/widget/my_search_bar.dart';
@@ -91,16 +92,17 @@ class _HomePageState extends State<HomePage> {
               mainAxisSpacing: 4, crossAxisCount: 3, crossAxisSpacing: 4),
           itemCount: imageList.length,
           itemBuilder: (context, index) =>
-              ImageItem(photo: imageList[index], onClick: () {}),
+              ImageItem(photo: imageList[index], onClick: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => DetailPage(photo: imageList[index])));
+              }),
         ),
         Positioned(
             top: 12,
             left: 12,
             right: 12,
             child: _isSearchVisible ? MySearchBar(
-              onSearch: (query) {
-                print(query);
-              },
+              onSearch: (query) => Provider.of<HomeProvider>(context, listen: false)
+                  .fetchImages(query),
             ) : Container()
         )
       ],

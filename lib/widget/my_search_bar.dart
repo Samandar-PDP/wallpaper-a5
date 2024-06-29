@@ -35,7 +35,6 @@ class MySearchBar extends StatelessWidget {
           onChanged: (value) {
             if(_timer?.isActive == true) {
               _timer?.cancel();
-              return;
             }
             _timer = Timer(700.ms, () {
               onSearch(value);
@@ -44,6 +43,6 @@ class MySearchBar extends StatelessWidget {
         ),
       ),
     )
-    ).animate(delay: 100.ms).fade(duration: 100.ms).slideY(duration: 400.ms).scaleX(duration: 400.ms);
+    ).animate(delay: 100.ms).fade(duration: 100.ms).move(duration: 300.ms);
   }
 }
